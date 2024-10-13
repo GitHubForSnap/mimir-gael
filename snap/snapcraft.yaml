@@ -1,0 +1,44 @@
+name: mimir-gael
+version: "v2.14.0"
+base: core22
+summary: Mimir
+description: |
+  Grafana Mimir is an open source software project that provides a scalable long-term storage for Prometheus.
+
+grade: stable
+confinement: strict
+
+architectures:
+  - build-on: amd64
+
+license: "AGPL-3.0-only"
+
+apps:
+  mimir-server:
+    command: launchers/mimir-server.sh
+    daemon: simple
+    install-mode: disable
+    plugs:
+      - network
+      - network-bind
+
+  mimir-cli:
+    command: launchers/mimir-cli.sh
+    plugs:
+      - network
+
+parts:
+  launchers:
+    plugin: dump
+    source: snap/local/launchers
+    organize:
+      'mimir-server.sh' : launchers/
+      'mimir-cli.sh' : launchers/
+    stage:
+      - launchers/mimir-server.sh
+      - launchers/mimir-cli.sh
+
+  grafana:
+    plugin: dump
+    source: https://github.com/grafana/mimir/releases/download/mimir-2.14.0/mimir-2.14.0_amd64.deb
+    source-type: deb
