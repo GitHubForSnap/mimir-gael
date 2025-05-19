@@ -19,6 +19,8 @@ apps:
     daemon: simple
     install-mode: disable
     plugs:
+      - network-observe   # To allow /usr/bin/ip
+      - hardware-observe  # To allow /proc/bus/pci/devices
       - network
       - network-bind
 
