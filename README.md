@@ -4,14 +4,14 @@ Grafana Mimir is an open source software project that provides a scalable long-t
 
 Read the doc at https://grafana.com/docs/mimir/latest/ on how to get started.
 
-###Connect the interfaces###
+### Connect the interfaces
 
 ```
 sudo snap connect mimir-gael:hardware-observe
 sudo snap connect mimir-gael:network-observe
 ```
 
-###Configure the server (Example)###
+### Configure the server (Example)
 
 ```
 sudo vi /var/snap/mimir-gael/current/mimir.yaml
